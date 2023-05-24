@@ -4,6 +4,7 @@ import ClientOnly from "../components/ClientOnly";
 import getCurrentUser from "../actions/getCurrentUser";
 import getFavoriteListings from "../actions/getFavoriteListings";
 import FavoritesClient from "./FavoritesClient";
+import { SafeUser } from "../types";
 
 const ListingPage = async () => {
   const listings = await getFavoriteListings();
@@ -18,6 +19,10 @@ const ListingPage = async () => {
         />
       </ClientOnly>
     );
+  }
+
+  if (!currentUser) {
+    return null;
   }
 
   return (
